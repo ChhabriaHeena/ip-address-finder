@@ -1,8 +1,19 @@
 
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import iconMarker from 'leaflet/dist/images/marker-icon.png';
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 
 const IPMap = ({ position, myIpData }: any) => {
+
+  const icon = L.icon({
+    iconRetinaUrl: iconRetina,
+    iconUrl: iconMarker,
+    shadowUrl: iconShadow
+  })
 
   return (
 
@@ -20,7 +31,9 @@ const IPMap = ({ position, myIpData }: any) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker
-          position={position}>
+          position={position}
+          icon={icon}
+        >
           <Popup>
             You are here. <br />
             City: {myIpData?.city} <br />
